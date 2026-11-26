@@ -27,13 +27,15 @@ test("seven direct pages, refresh, navigation and browser back", async ({
   }
   expect(errors).toEqual([]);
 });
-test("empty content hides home sections and never renders fake links", async ({
+test("published content appears while empty sections stay hidden", async ({
   page,
 }) => {
   await page.goto("/");
   await expect(
-    page.locator(".service-feature,.timeline,.story-grid"),
+    page.locator(".story-grid"),
   ).toHaveCount(0);
+  await expect(page.locator(".service-feature")).toHaveCount(1);
+  await expect(page.locator(".timeline li")).toHaveCount(2);
   for (const route of ["", ...routes]) {
     await page.goto("/" + route);
     const invalid = await page
@@ -151,4 +153,16 @@ test("development populated templates and detail back navigation", async ({
     await page.goBack();
     await expect(page).toHaveURL(new RegExp("/preview/" + route + "$"));
   }
+});
+
+test("team, undated history, game and recruitment links", async ({page}) => {
+  await page.goto('/about');
+  for(const name of ['김건우','고동현','박강민']) await expect(page.locator('.team-list')).toContainText(name);
+  await expect(page.locator('.timeline')).toContainText('11월 23일');
+  await expect(page.locator('.timeline')).toContainText('우수상');
+  await expect(page.locator('.timeline time')).toHaveCount(0);
+  await page.goto('/services/poop-wars');
+  await expect(page.getByRole('link',{name:'게임 플레이하기'})).toHaveAttribute('href','https://mndw100.github.io/poop-wars/');
+  await page.goto('/careers/always-open');
+  await expect(page.getByRole('link',{name:'지원하기'})).toHaveAttribute('href','mailto:god640388@gmail.com');
 });

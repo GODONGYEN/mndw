@@ -29,11 +29,12 @@ npm start
 
 - `services`: slug, name, audience, problem, description, 실제 image/imageAlt, 실제 url, technologyIds
 - `technologies`: id, name, problem, reason, serviceSlugs
-- `history`: date (`YYYY-MM`), title, description, 선택적 link
+- `history`: date (`YYYY-MM` 또는 미확정 시 null), 선택적 dateLabel, title, description, 선택적 link
 - `principles`: 원칙 문장과 evidence 배열 (`title`, `href`)
 - `stories`: slug, title, category, date (`YYYY-MM-DD`), image/imageAlt, paragraphs
 - `notices`: slug, title, date, paragraphs, resources
 - `irResources`, `irEmail`: 확인된 공개 자료와 IR 연락처
+- `members`: 이름·직책·공개 이메일. 회사소개와 채용에서 함께 표시합니다.
 - `team`, `workingStyle`, `jobs`: 확인된 팀 정보 및 채용 공고. 공고에는 slug, title, team, description과 선택적 applyUrl을 입력합니다.
 - `introduction`: 홈과 회사소개에서 공유하는 게임회사 소개 제목·문단
 - `vision`: 승인된 비전 문구

@@ -29,10 +29,10 @@ export function Timeline({ data }: { data: CompanyContent }) {
   return (
     <ol className="timeline">
       {[...data.history]
-        .sort((a, b) => b.date.localeCompare(a.date))
+        .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
         .map((item, i) => (
           <li key={`${item.date}-${i}`}>
-            <time dateTime={item.date}>{item.date.replace("-", ". ")}</time>
+            {item.date ? <time dateTime={item.date}>{item.dateLabel || item.date.replace("-", ". ")}</time> : <span className="timeline-date">{item.dateLabel || "기록"}</span>}
             <div>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
@@ -59,7 +59,7 @@ export function Services({
           <div>
             <p className="eyebrow">SERVICE</p>
             <h2>{s.name}</h2>
-            <p className="audience">{s.audience}을 위한 서비스</p>
+            <p className="audience">{s.audience}를 위한 게임</p>
             <p>{s.problem}</p>
           </div>
           {s.image && (
@@ -291,6 +291,13 @@ export function Stories({
     </div>
   );
 }
+
+export function Team({ data }: { data: CompanyContent }) {
+  return <div className="team-list">{data.members.map(member => <article key={member.role}>
+    <p className="eyebrow">{member.role}</p><h3>{member.name}</h3>
+    {member.email && <a className="text-link" href={`mailto:${member.email}`}>{member.email}</a>}
+  </article>)}</div>;
+}
 export function SectionPage({
   section,
   data,
@@ -347,6 +354,7 @@ export function SectionPage({
                 <Empty>비전에 관한 자세한 소개는 준비 중입니다.</Empty>
               )}
             </section>
+            <section><p className="eyebrow">OUR TEAM</p><h2>함께 만드는 사람들</h2><Team data={data}/></section>
             <section id="history">
               <p className="eyebrow">OUR JOURNEY</p>
               <h2>회사 연혁</h2>
@@ -434,6 +442,7 @@ export function SectionPage({
               ) : (
                 <Empty>팀 소개를 준비하고 있습니다.</Empty>
               )}
+              <Team data={data}/>
             </section>
             <section>
               <h2>일하는 방식</h2>
@@ -525,7 +534,7 @@ export function Detail({
       </div>
       {"url" in item && validHref(item.url) && (
         <a className="button-link" href={publicPath(item.url)}>
-          서비스 이용하기
+          게임 플레이하기
         </a>
       )}
       {"applyUrl" in item && validHref(item.applyUrl) && (

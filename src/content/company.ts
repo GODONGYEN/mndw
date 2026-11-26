@@ -19,7 +19,8 @@ export type Technology = {
 };
 export type Principle = { id: string; title: string; evidence: Resource[] };
 export type Milestone = {
-  date: string;
+  date: string | null;
+  dateLabel?: string;
   title: string;
   description: string;
   link?: Resource;
@@ -69,6 +70,7 @@ export type CompanyContent = {
   irResources: Resource[];
   irEmail: string | null;
   team: string | null;
+  members: { name: string; role: string; email?: string }[];
   workingStyle: string[];
   jobs: Job[];
 };
@@ -110,16 +112,50 @@ export const company: CompanyContent = {
       evidence: [],
     },
   ],
-  services: [],
+  services: [{
+    slug: "poop-wars",
+    name: "푸프 워즈 (Poop Wars)",
+    audience: "가볍게 접속해 색다른 대결을 즐기고 싶은 플레이어",
+    problem: "핑크팀과 민트팀, 3분 동안 펼쳐지는 영역 점령전. 브라우저에서 바로 푸프 워즈를 만나보세요.",
+    description: ["푸프 워즈(Poop Wars)는 MNDW가 만든 브라우저 게임입니다. 핑크팀과 민트팀이 펼치는 3분 영역 점령전을 즐길 수 있습니다.", "아래 ‘게임 플레이하기’를 누르면 공개된 게임 페이지로 이동합니다. 게임 화면에서 안내하는 방법에 따라 플레이해 보세요."],
+    image: "/games/poop-wars.png",
+    imageAlt: "푸프 워즈 공개 웹 게임의 실제 시작 화면",
+    url: "https://mndw100.github.io/poop-wars/",
+    technologyIds: [],
+  }],
   technologies: [],
-  history: [],
+  history: [
+    { date: null, dateLabel: "11월 23일", title: "MNDW 설립", description: "‘새벽을 여는’이라는 이름으로 MNDW의 여정을 시작했습니다." },
+    { date: null, dateLabel: "수상", title: "인천대학교 제2회 유니컬쳐 아이디어 챌린지 부문 우수상", description: "인천대학교 제2회 유니컬쳐에서 아이디어 챌린지 부문 우수상을 수상했습니다." },
+  ],
   stories: [],
   notices: [],
   irResources: [],
   irEmail: null,
-  team: null,
-  workingStyle: [],
-  jobs: [],
+  team: "서로 다른 시선을 모아 하나의 즐거움을 만듭니다. MNDW는 함께 고민하고 직접 만들어가는 게임회사입니다.",
+  members: [
+    { name: "김건우", role: "대표", email: "rjsdn100@inu.ac.kr" },
+    { name: "고동현", role: "사무팀장", email: "god640388@gmail.com" },
+    { name: "박강민", role: "마케팅팀장" },
+  ],
+  workingStyle: [
+    "직책보다 아이디어를 먼저 봅니다. 수평적인 관계 속에서 누구나 의견을 제안하고, 더 나은 게임을 위한 질문을 자유롭게 나눕니다.",
+    "솔직하게 이야기하고, 서로를 존중합니다. 다른 의견은 더 나은 선택의 출발점입니다. 결정의 이유를 함께 나누고 각자의 역할에 책임을 다합니다.",
+    "작게 시도하고, 함께 발전시킵니다. 아이디어를 직접 만들어 보고 플레이하며 얻은 피드백을 다음 개선으로 이어갑니다.",
+    "혼자 잘하는 것보다 함께 완성하는 일을 중요하게 생각합니다. 서로의 강점을 보태고 배움을 나누며, 플레이어에게 전할 즐거움을 함께 키웁니다.",
+  ],
+  jobs: [{
+    slug: "always-open",
+    title: "다음 즐거움의 시작을 함께할 동료를 찾습니다",
+    team: "상시모집 · MNDW",
+    description: [
+      "좋은 게임은 새로운 시선과 만날 때 시작됩니다. MNDW는 게임을 향한 호기심과 자신만의 아이디어로 다음 장면을 함께 만들어갈 동료를 상시 모집합니다.",
+      "어떤 분야에서 무엇을 만들고 싶은지, MNDW와 어떤 즐거움을 나누고 싶은지 들려주세요. 서로의 생각을 존중하며 함께 배우고 만들어가는 분을 기다립니다.",
+      "간단한 자기소개와 관심 분야를 이메일로 보내주세요. 보여주고 싶은 작업이나 포트폴리오가 있다면 함께 전달해 주세요.",
+      "지원 및 문의: 사무팀장 고동현 · god640388@gmail.com. 모집 분야와 구체적인 참여 조건은 문의를 통해 안내합니다.",
+    ],
+    applyUrl: "mailto:god640388@gmail.com",
+  }],
 };
 export const navigation = [
   { slug: "about", label: "회사소개", english: "About MNDW" },
@@ -134,6 +170,7 @@ export const navigation = [
 export function validHref(href?: string): href is string {
   return (
     !!href &&
-    (/^https?:\/\/[^\s]+$/.test(href) || /^\/(?!\/)[^\s]*$/.test(href))
+    (/^mailto:[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(href) ||
+      /^https?:\/\/[^\s]+$/.test(href) || /^\/(?!\/)[^\s]*$/.test(href))
   );
 }

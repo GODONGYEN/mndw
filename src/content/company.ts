@@ -135,7 +135,7 @@ export const company: CompanyContent = {
   team: "서로 다른 시선을 모아 하나의 즐거움을 만듭니다. MNDW는 함께 고민하고 직접 만들어가는 게임회사입니다.",
   members: [
     { name: "김건우", role: "대표", email: "rjsdn100@inu.ac.kr" },
-    { name: "고동현", role: "사무팀장", email: "god640388@gmail.com" },
+    { name: "고동현", role: "사무팀장", email: "god640388@inu.ac.kr" },
     { name: "박강민", role: "마케팅팀장" },
   ],
   workingStyle: [
@@ -152,9 +152,9 @@ export const company: CompanyContent = {
       "좋은 게임은 새로운 시선과 만날 때 시작됩니다. MNDW는 게임을 향한 호기심과 자신만의 아이디어로 다음 장면을 함께 만들어갈 동료를 상시 모집합니다.",
       "어떤 분야에서 무엇을 만들고 싶은지, MNDW와 어떤 즐거움을 나누고 싶은지 들려주세요. 서로의 생각을 존중하며 함께 배우고 만들어가는 분을 기다립니다.",
       "간단한 자기소개와 관심 분야를 이메일로 보내주세요. 보여주고 싶은 작업이나 포트폴리오가 있다면 함께 전달해 주세요.",
-      "지원 및 문의: 사무팀장 고동현 · god640388@gmail.com. 모집 분야와 구체적인 참여 조건은 문의를 통해 안내합니다.",
+      "지원 및 문의: 사무팀장 고동현 · god640388@inu.ac.kr. 모집 분야와 구체적인 참여 조건은 문의를 통해 안내합니다.",
     ],
-    applyUrl: "mailto:god640388@gmail.com",
+    applyUrl: "mailto:god640388@inu.ac.kr",
   }],
 };
 export const navigation = [

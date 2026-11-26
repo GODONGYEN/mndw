@@ -515,8 +515,16 @@ a {
 }
 .service-feature {
   display: grid;
-  gap: 30px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 80px);
 }
+.service-feature > div { min-width: 0; }
+.service-feature h2 { font-size: clamp(28px, 2.8vw, 42px); }
+.service-feature p:not(.eyebrow) { font-size: 17px; }
+.service-screen { margin: 0; min-width: 0; }
+.service-screen figcaption { margin-top: 14px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
 .service-feature h2 {
   margin-bottom: 20px;
 }
@@ -527,11 +535,17 @@ a {
   justify-self: start;
 }
 .service-image {
+  display: block;
   width: 100%;
-  max-height: 680px;
+  height: auto;
   object-fit: contain;
-  background: var(--paper);
+  border-radius: 8px;
 }
+@media (max-width: 820px) {
+  .service-feature { grid-template-columns: 1fr; gap: 28px; }
+  .service-feature h2 { font-size: 30px; }
+}
+
 .technology-list article {
   display: grid;
   grid-template-columns: 1fr 1.4fr;

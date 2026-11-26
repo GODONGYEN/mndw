@@ -61,17 +61,22 @@ export function Services({
             <h2>{s.name}</h2>
             <p className="audience">{s.audience}를 위한 게임</p>
             <p>{s.problem}</p>
+            <Link className="text-link" href={`${base}/services/${s.slug}`}>
+              게임 자세히 보기
+            </Link>
           </div>
           {s.image && (
-            <img
-              className="service-image"
-              src={publicPath(s.image)}
-              alt={s.imageAlt || s.name}
-            />
+            <figure className="service-screen">
+              <img
+                className="service-image"
+                src={publicPath(s.image)}
+                alt={s.imageAlt || s.name}
+                width={1440}
+                height={900}
+              />
+              <figcaption>{s.name} · 실제 게임 화면</figcaption>
+            </figure>
           )}
-          <Link className="text-link" href={`${base}/services/${s.slug}`}>
-            자세히 보기
-          </Link>
         </article>
       ))}
     </div>

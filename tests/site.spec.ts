@@ -164,5 +164,5 @@ test("team, undated history, game and recruitment links", async ({page}) => {
   await page.goto('/services/poop-wars');
   await expect(page.getByRole('link',{name:'게임 플레이하기'})).toHaveAttribute('href','https://mndw100.github.io/poop-wars/');
   await page.goto('/careers/always-open');
-  await expect(page.getByRole('link',{name:'지원하기'})).toHaveAttribute('href','mailto:god640388@gmail.com');
+  await expect(page.getByRole('link',{name:'지원하기'})).toHaveAttribute('href','mailto:god640388@inu.ac.kr');
 });
